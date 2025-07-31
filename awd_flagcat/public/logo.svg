@@ -1,0 +1,16 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bg, .eye { transition: fill .3s ease; }
+      .bg { fill: #409EFF; }
+      .eye { fill: #FFF; }
+      @media (prefers-color-scheme: dark) {
+        .bg { fill: #66b1ff; }
+        .eye { fill: #1d1d1d; }
+      }
+    </style>
+  </defs>
+  <path class="bg" d="M 50,5 C 95,5 95,50 50,95 C 5,95 5,50 50,5 Z" />
+  <path class="eye" d="M 50,25 C 75,25 75,50 50,75 C 25,75 25,50 50,25 Z" />
+  <circle class="bg" cx="50" cy="50" r="10" />
+</svg>

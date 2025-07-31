@@ -1,0 +1,5 @@
+# requirements.txt
+fastapi
+uvicorn[standard]
+pydantic
+httpx

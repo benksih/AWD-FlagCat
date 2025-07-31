@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.env
+venv/
+dist/awd_backend.exe
+build/
+
+# Node.js
+node_modules/
+dist/
+.pnpm-store/
+
+# Tauri / Rust
+src-tauri/target/
+src-tauri/gen/
+src-tauri/tauri.conf.json.bak
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
