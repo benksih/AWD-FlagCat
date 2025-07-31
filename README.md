@@ -2,7 +2,8 @@
 
 一款美观、易用的AWD（攻防模式）自动化攻击平台，由我和我的AI程序员R456共同开发。
 
-![App Screenshot](URL_TO_YOUR_SCREENSHOT) ## ✨ 功能特性
+![App Screenshot](URL_TO_YOUR_SCREENSHOT) 
+## ✨ 功能特性
 
 - **现代化UI**：基于Tauri+Vue3构建，支持一键切换浅色/暗黑主题。
 - **集成化布局**：多栏目分体式布局，便于实时观察攻击日志和调整配置。

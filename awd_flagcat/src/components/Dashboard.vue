@@ -17,20 +17,21 @@
     </div>
   </div>
 </template>
-
 <script setup lang="ts">
 import { ref, watch, nextTick, computed } from 'vue';
 import { storeToRefs } from 'pinia';
-// 1. 在这里重新导入 ElMessage
 import { ElButton, ElTag, ElMessage } from 'element-plus';
 import { useLogStore } from '../store/logStore';
 
+// 1. 为 el-tag 的 type 定义一个明确的类型
+type TagType = 'success' | 'warning' | 'danger' | 'info' | 'primary';
+
 const logBoxRef = ref<HTMLDivElement | null>(null);
 const logStore = useLogStore();
-
 const { logs, connectionStatus } = storeToRefs(logStore);
 
-watch(logs, (newLogs) => {
+// 2. 在 watch 中，将未使用的变量 newLogs 重命名为 _newLogs
+watch(logs, (_newLogs) => {
   nextTick(() => {
     if (logBoxRef.value) {
       logBoxRef.value.scrollTop = logBoxRef.value.scrollHeight;
@@ -38,8 +39,6 @@ watch(logs, (newLogs) => {
   });
 }, { deep: true });
 
-
-// --- API 调用逻辑 (恢复 ElMessage) ---
 const apiRequest = async (endpoint: string, method: 'POST' | 'GET' = 'POST') => {
     try {
         const response = await fetch(`http://127.0.0.1:8000/api${endpoint}`, { method });
@@ -48,19 +47,16 @@ const apiRequest = async (endpoint: string, method: 'POST' | 'GET' = 'POST') => 
             throw new Error(errorData.detail || '请求失败');
         }
         const data = await response.json();
-        // 2. 将这里的 ElMessage 调用恢复
         ElMessage.success(data.message || '操作成功！');
     } catch(error: any) {
-        // 3. 将这里的 ElMessage 调用也恢复
         ElMessage.error(`操作失败: ${error.message}`);
     }
 }
 const startAttack = () => apiRequest('/control/start');
 const stopAttack = () => apiRequest('/control/stop');
 
-
-// --- 计算属性 (这部分保持不变) ---
-const wsStatus = computed(() => {
+// 3. 为计算属性指定我们刚刚定义的返回类型
+const wsStatus = computed<{ type: TagType; text: string }>(() => {
   switch (connectionStatus.value) {
     case 'connected':
       return { type: 'success', text: '已连接' };
