@@ -29,5 +29,6 @@ pyinstaller --noconsole --onefile --name awd_backend awd_platform/main.py
 
 # 3. 构建Tauri应用
 pnpm tauri build
+```
 ## 📜 许可证
 本项目采用 MIT License 开源。
